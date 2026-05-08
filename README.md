@@ -1,167 +1,58 @@
-# tesla_dashboard
 # Tesla Energy Dashboard
 
-A modern enterprise-grade Tesla-inspired operations dashboard built with Angular and Flask. The platform provides a professional admin console for managing jobs, monitoring analytics, tracking operational metrics, and handling enterprise workflows through a responsive dark-themed interface.
+Tesla Energy Dashboard is a production-grade Angular + Flask application that models an enterprise operations control center. The frontend is built with standalone Angular components, signal-driven state, and a scalable UI system. The backend provides a REST API with SQLite persistence for jobs management.
 
----
+## Highlights
 
-# 🚀 Features
+- Modern SaaS-style UI with dark enterprise theming and responsive layout
+- Standalone Angular routing with lazy-loaded pages
+- Jobs management module with search, filters, sorting, pagination, and CRUD
+- Flask REST API with SQLite schema + seed data
+- Clean service architecture with typed API models and mapping
 
-## Dashboard & Analytics
+## Tech Stack
 
-* Enterprise operations dashboard
-* Real-time analytics cards
-* Monthly statistics tracking
-* Operational monitoring widgets
-* Responsive KPI visualization
-* Tesla-inspired dark UI
+- Angular 21 (standalone components, signals, OnPush)
+- RxJS and HttpClient
+- Flask 3 + Flask-CORS
+- SQLite
 
-## Jobs Management
+## Architecture
 
-* Create, Read, Update, Delete (CRUD)
-* Search and filtering
-* Sorting support
-* Pagination
-* Dynamic data tables
-* Status management
+- `src/app/core`: API services and UI utilities
+- `src/app/layout`: shell layout, navbar, and sidebar
+- `src/app/pages`: route-level feature screens
+- `src/app/shared/ui`: reusable UI primitives (cards, table, toasts)
+- `backend/app`: Flask app factory, blueprints, DB helpers, schema
 
-## UI System
+## API Endpoints
 
-* Responsive enterprise layout
-* Sidebar navigation
-* Navbar with notifications
-* Section cards
-* Stat cards
-* Toast notifications
-* Reusable components
-* Dark mode Tesla-style theme
+- `GET /jobs`
+- `POST /jobs`
+- `PUT /jobs/<id>`
+- `DELETE /jobs/<id>`
 
-## Application Architecture
+## Getting Started
 
-* Angular standalone components
-* Modular frontend architecture
-* Flask REST API backend
-* Scalable component structure
-* TypeScript strict mode support
+### Frontend
 
----
-
-# 🛠️ Tech Stack
-
-## Frontend
-
-* Angular
-* TypeScript
-* SCSS
-* RxJS
-* Angular Router
-
-## Backend
-
-* Flask
-* Python
-* REST API
-
----
-
-# 📂 Project Structure
-
-```bash id="65bl90"
-tesla-dashboard/
-│
-├── src/
-│   ├── app/
-│   │   ├── core/
-│   │   ├── layout/
-│   │   ├── pages/
-│   │   ├── shared/
-│   │   └── components/
-│   │
-│   ├── assets/
-│   └── styles/
-│
-├── backend/
-│   ├── app/
-│   ├── routes/
-│   ├── models/
-│   └── run.py
-│
-├── angular.json
-├── package.json
-└── README.md
-```
-
----
-
-# 🔌 API Endpoints
-
-## Jobs API
-
-```http id="szr0q3"
-GET    /jobs
-POST   /jobs
-PUT    /jobs/<id>
-DELETE /jobs/<id>
-```
-
----
-
-# ⚙️ Installation
-
-## Frontend Setup
-
-```bash id="fxknva"
+```bash
 npm install
 npm start
 ```
 
-Frontend runs on:
+Open http://localhost:4200
 
-```txt id="4c4qvi"
-http://localhost:4200
-```
+### Backend
 
----
-
-## Backend Setup
-
-### Create Virtual Environment
-
-```bash id="bx84pq"
+```bash
 python -m venv .venv
-```
-
-### Activate Environment
-
-#### Windows
-
-```bash id="q39oww"
 .venv\Scripts\activate
-```
-
-#### Linux / MacOS
-
-```bash id="3vhp3f"
-source .venv/bin/activate
-```
-
-### Install Dependencies
-
-```bash id="uvn74y"
 pip install -r backend/requirements.txt
-```
-
-### Run Backend
-
-```bash id="f9b89q"
 python backend/run.py
 ```
 
-Backend runs on:
-
-```txt id="6f7fhm"
-http://localhost:5000
-```
+API runs on http://localhost:5000
 
 ---
 
@@ -225,3 +116,35 @@ ng build
 # 📄 License
 
 This project is intended for educational, portfolio, and enterprise dashboard development purposes.
+=======
+Open `http://localhost:4200`.
+
+### Backend
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r backend/requirements.txt
+python backend/run.py
+```
+
+The API runs at `http://localhost:5000`.
+
+## API Endpoints
+
+- `GET /jobs`
+- `POST /jobs`
+- `PUT /jobs/<id>`
+- `DELETE /jobs/<id>`
+
+## Scripts
+
+- `npm start` — run the Angular dev server
+- `npm test` — run unit tests
+- `npm run build` — create production build
+
+## Notes
+
+- The Jobs page reads from the Flask API by default. Ensure the backend is running.
+- Auth is a frontend-only scaffold designed for easy JWT integration.
+>>>>>>> b5ade62 (Initial commit)

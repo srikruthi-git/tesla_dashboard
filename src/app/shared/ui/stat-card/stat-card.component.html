@@ -1,0 +1,14 @@
+<article
+  class="stat-card"
+  [class.stat-card--up]="trend() === 'up'"
+  [class.stat-card--down]="trend() === 'down'"
+>
+  <p class="stat-card__label">{{ label() }}</p>
+  <div class="stat-card__value">{{ value() }}</div>
+  @if (delta()) {
+    <div class="stat-card__delta">
+      <span class="stat-card__trend">{{ trendLabel() }}</span>
+      <span>{{ delta() }}</span>
+    </div>
+  }
+</article>

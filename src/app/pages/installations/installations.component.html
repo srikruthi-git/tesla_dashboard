@@ -1,0 +1,20 @@
+<app-page-header
+  title="Installations"
+  subtitle="Track deployment status for new energy assets and upgrades."
+  kicker="Delivery"
+/>
+
+<section class="installations__list" aria-label="Active installations">
+  @for (item of installations(); track item.id) {
+    <article class="installations__card">
+      <div>
+        <h3>{{ item.site }}</h3>
+        <p>{{ item.region }}</p>
+      </div>
+      <div class="installations__meta">
+        <span class="installations__stage">{{ item.stage }}</span>
+        <span class="installations__eta">{{ item.eta }}</span>
+      </div>
+    </article>
+  }
+</section>

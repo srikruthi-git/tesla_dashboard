@@ -1,0 +1,19 @@
+<app-page-header
+  title="Users"
+  subtitle="Manage internal access and on-call coverage."
+  kicker="Workforce"
+/>
+
+<section class="users__list" aria-label="Active users">
+  @for (user of users(); track user.id) {
+    <article class="users__card">
+      <div>
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.role }}</p>
+      </div>
+      <span class="users__status" [class.users__status--active]="user.status === 'Active'">
+        {{ user.status }}
+      </span>
+    </article>
+  }
+</section>

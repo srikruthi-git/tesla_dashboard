@@ -1,0 +1,150 @@
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 28px;
+  min-height: var(--nav-height);
+  background: linear-gradient(120deg, #0b0f1a 0%, #121a2b 55%, #1b2642 100%);
+  color: #f5f6ff;
+  box-shadow: 0 16px 40px rgba(8, 10, 18, 0.5);
+}
+
+.nav-bar__menu {
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.nav-bar__menu svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-bar__menu:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.nav-bar__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-bar__logo {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.6px;
+}
+
+.nav-bar__sub {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.nav-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-bar__icon {
+  position: relative;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.nav-bar__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-bar__icon:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.nav-bar__badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #f04444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 2px 5px;
+}
+
+.nav-bar__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-bar__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+}
+
+.nav-bar__user-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-bar__name {
+  font-weight: 600;
+}
+
+.nav-bar__role {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .nav-bar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav-bar__brand {
+    order: 2;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-bar__user-text {
+    display: none;
+  }
+}
+
+@media (min-width: 721px) {
+  .nav-bar__menu {
+    display: none;
+  }
+}

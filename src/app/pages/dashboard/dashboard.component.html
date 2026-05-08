@@ -1,0 +1,136 @@
+<app-page-header
+  title="Dashboard"
+  subtitle="Enterprise operations overview across energy generation and deployment."
+  kicker="Operations"
+/>
+
+<section class="dashboard__kpis">
+  @for (stat of stats(); track stat.id) {
+    <app-stat-card
+      [label]="stat.label"
+      [value]="stat.value"
+      [delta]="stat.delta"
+      [trend]="stat.trend"
+    />
+  }
+</section>
+
+<section class="dashboard__grid">
+  <app-section-card
+    class="dashboard__card dashboard__card--span-7"
+    title="Installation Metrics"
+    subtitle="Deployment velocity and milestone risk"
+    tag="Installations"
+  >
+    <div class="metric-list">
+      @for (item of installations(); track item.id) {
+        <div class="metric-row" [class.metric-row--risk]="item.status === 'At Risk'" [class.metric-row--watch]="item.status === 'Watch'">
+          <div>
+            <p class="metric-title">{{ item.site }}</p>
+            <p class="metric-sub">{{ item.region }}</p>
+          </div>
+          <div class="metric-progress">
+            <div
+              class="progress"
+              role="progressbar"
+              [attr.aria-valuenow]="item.completion"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progress__bar" [style.width.%]="item.completion"></div>
+            </div>
+            <span class="metric-value">{{ item.completion }}%</span>
+          </div>
+          <span class="status-pill" [class.status-pill--risk]="item.status === 'At Risk'" [class.status-pill--watch]="item.status === 'Watch'">
+            {{ item.status }}
+          </span>
+        </div>
+      }
+    </div>
+  </app-section-card>
+
+  <app-section-card
+    class="dashboard__card dashboard__card--span-5"
+    title="Revenue Metrics"
+    subtitle="Trading, subscriptions, and curtailment"
+    tag="Financial"
+  >
+    <div class="revenue-grid">
+      @for (metric of revenue(); track metric.id) {
+        <div class="revenue-card" [class.revenue-card--up]="metric.trend === 'up'" [class.revenue-card--down]="metric.trend === 'down'">
+          <p>{{ metric.label }}</p>
+          <strong>{{ metric.value }}</strong>
+          <span>{{ metric.delta }}</span>
+        </div>
+      }
+    </div>
+  </app-section-card>
+
+  <app-section-card class="dashboard__card dashboard__card--span-4" title="Pending Jobs" subtitle="Immediate work orders" tag="Queue">
+    <div class="job-list">
+      @for (job of pendingJobs(); track job.id) {
+        <div class="job-row">
+          <div>
+            <p class="job-title">{{ job.title }}</p>
+            <p class="job-sub">{{ job.site }}</p>
+          </div>
+          <div class="job-meta">
+            <span class="status-pill" [class.status-pill--risk]="job.priority === 'Critical'" [class.status-pill--watch]="job.priority === 'High'">
+              {{ job.priority }}
+            </span>
+            <span class="job-eta">{{ job.eta }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </app-section-card>
+
+  <app-section-card class="dashboard__card dashboard__card--span-4" title="Completed Jobs" subtitle="Recently closed" tag="Throughput">
+    <div class="job-list">
+      @for (job of completedJobs(); track job.id) {
+        <div class="job-row">
+          <div>
+            <p class="job-title">{{ job.title }}</p>
+            <p class="job-sub">{{ job.site }}</p>
+          </div>
+          <div class="job-meta">
+            <span class="status-pill status-pill--success">Completed</span>
+            <span class="job-eta">{{ job.eta }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </app-section-card>
+
+  <app-section-card class="dashboard__card dashboard__card--span-4" title="Active Technicians" subtitle="Field and dispatch coverage" tag="Workforce">
+    <div class="tech-list">
+      @for (tech of technicians(); track tech.id) {
+        <div class="tech-row">
+          <div>
+            <p class="tech-name">{{ tech.name }}</p>
+            <p class="tech-role">{{ tech.role }}</p>
+          </div>
+          <span class="tech-status" [class.tech-status--on]="tech.status === 'On Shift'" [class.tech-status--call]="tech.status === 'On Call'">
+            <span class="tech-dot"></span>
+            {{ tech.status }}
+          </span>
+        </div>
+      }
+    </div>
+  </app-section-card>
+
+  <app-section-card class="dashboard__card dashboard__card--span-12" title="Monthly Statistics" subtitle="Utilization and revenue momentum" tag="Trend">
+    <div class="monthly-grid">
+      @for (stat of monthlyStats(); track stat.id) {
+        <div class="monthly-row">
+          <span class="monthly-month">{{ stat.month }}</span>
+          <div class="monthly-bar" role="progressbar" [attr.aria-valuenow]="stat.utilization" aria-valuemin="0" aria-valuemax="100">
+            <div class="monthly-bar__fill" [style.width.%]="stat.utilization"></div>
+          </div>
+          <span class="monthly-util">{{ stat.utilization }}%</span>
+          <span class="monthly-rev">{{ stat.revenue }}</span>
+        </div>
+      }
+    </div>
+  </app-section-card>
+</section>

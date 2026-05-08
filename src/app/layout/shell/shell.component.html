@@ -1,0 +1,19 @@
+<div class="app-shell">
+  <app-navbar class="app-shell__nav" (toggleSidebar)="toggleSidebar()" />
+  <div class="app-shell__body">
+    <div class="app-shell__side" [class.is-open]="isSidebarOpen()">
+      <app-sidebar />
+    </div>
+    <main class="app-shell__main" aria-live="polite" (click)="closeSidebar()">
+      <router-outlet />
+    </main>
+    <button
+      type="button"
+      class="app-shell__overlay"
+      [class.is-visible]="isSidebarOpen()"
+      aria-label="Close navigation"
+      (click)="closeSidebar()"
+    ></button>
+  </div>
+</div>
+<app-toast />

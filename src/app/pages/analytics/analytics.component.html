@@ -1,0 +1,40 @@
+<app-page-header
+  title="Analytics"
+  subtitle="Performance insights across bidding, dispatch, and asset health."
+  kicker="Intelligence"
+/>
+
+<section class="analytics__stats">
+  @for (insight of insights(); track insight.id) {
+    <app-stat-card
+      [label]="insight.label"
+      [value]="insight.value"
+      [delta]="insight.delta"
+      [trend]="insight.trend"
+    />
+  }
+</section>
+
+<section class="analytics__panel">
+  <div class="analytics__panel-head">
+    <h2>Performance Highlights</h2>
+    <p>Cross-market comparison of dispatch success and curtailment risk.</p>
+  </div>
+  <div class="analytics__panel-grid">
+    <div class="analytics__panel-card">
+      <span>Peak Bidding</span>
+      <strong>14:00-18:00</strong>
+      <p>High demand response utilization across West and Southwest.</p>
+    </div>
+    <div class="analytics__panel-card">
+      <span>Storage Efficiency</span>
+      <strong>91.3%</strong>
+      <p>Battery clusters improving charge cadence post firmware update.</p>
+    </div>
+    <div class="analytics__panel-card">
+      <span>Risk Watch</span>
+      <strong>6 Sites</strong>
+      <p>Monitor grid congestion in coastal corridors.</p>
+    </div>
+  </div>
+</section>

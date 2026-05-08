@@ -1,0 +1,34 @@
+<div class="data-table" [style.--table-columns]="layout()">
+  <div class="data-table__header" role="row">
+    @for (column of columns(); track column.key) {
+      @if (column.sortable) {
+        <button
+          type="button"
+          class="data-table__header-cell"
+          [class.align-right]="column.align === 'right'"
+          [class.align-center]="column.align === 'center'"
+          [class.is-active]="sortState()?.key === column.key"
+          [attr.aria-sort]="getAriaSort(column)"
+          (click)="toggleSort(column)"
+        >
+          <span>{{ column.label }}</span>
+          <span class="data-table__sort-indicator" aria-hidden="true">
+            {{ sortState()?.key === column.key && sortState()?.direction === 'desc' ? '↓' : '↑' }}
+          </span>
+        </button>
+      } @else {
+        <div
+          class="data-table__header-cell"
+          [class.align-right]="column.align === 'right'"
+          [class.align-center]="column.align === 'center'"
+          role="columnheader"
+        >
+          {{ column.label }}
+        </div>
+      }
+    }
+  </div>
+  <div class="data-table__body" role="rowgroup">
+    <ng-content />
+  </div>
+</div>

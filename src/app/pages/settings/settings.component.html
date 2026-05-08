@@ -1,0 +1,17 @@
+<app-page-header
+  title="Settings"
+  subtitle="Operational policies and control center preferences."
+  kicker="Configuration"
+/>
+
+<section class="settings__list" aria-label="Settings overview">
+  @for (setting of settings(); track setting.id) {
+    <article class="settings__card">
+      <div>
+        <h3>{{ setting.label }}</h3>
+        <p>Current: {{ setting.value }}</p>
+      </div>
+      <button type="button" class="settings__button">Edit</button>
+    </article>
+  }
+</section>

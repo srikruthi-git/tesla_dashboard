@@ -1,0 +1,177 @@
+<app-page-header
+  title="Jobs"
+  subtitle="Monitor enterprise installation pipelines, schedules, and execution status."
+  kicker="Job Control"
+/>
+
+@if (errorMessage()) {
+  <div class="jobs__error" role="alert">
+    {{ errorMessage() }}
+  </div>
+}
+
+<section class="jobs__create">
+  <div class="jobs__create-header">
+    <div>
+      <h2>Create job</h2>
+      <p>Provision a new installation or service order.</p>
+    </div>
+    <button type="button" class="jobs__create-button" (click)="createJob()" [disabled]="isSaving()">
+      @if (isSaving()) {
+        <span class="spinner" aria-hidden="true"></span>
+        Saving...
+      } @else {
+        Create job
+      }
+    </button>
+  </div>
+  <form class="jobs__form" [formGroup]="form" (ngSubmit)="createJob()">
+    <label class="field">
+      <span>Customer</span>
+      <input type="text" formControlName="customer" placeholder="Utility or enterprise client" />
+    </label>
+    <label class="field">
+      <span>Installation type</span>
+      <select formControlName="installationType">
+        @for (type of installationTypes; track type) {
+          <option [value]="type">{{ type }}</option>
+        }
+      </select>
+    </label>
+    <label class="field">
+      <span>Status</span>
+      <select formControlName="status">
+        @for (status of statusOptions; track status) {
+          <option [value]="status">{{ status }}</option>
+        }
+      </select>
+    </label>
+    <label class="field">
+      <span>Assigned engineer</span>
+      <input type="text" formControlName="assignedEngineer" placeholder="Engineer on lead" />
+    </label>
+    <label class="field">
+      <span>Scheduled date</span>
+      <input type="date" formControlName="scheduledDate" />
+    </label>
+  </form>
+</section>
+
+<section class="jobs__controls">
+  <div class="jobs__search">
+    <input
+      type="search"
+      placeholder="Search by job ID, customer, engineer"
+      [value]="searchQuery()"
+      (input)="onSearch($event)"
+      aria-label="Search jobs"
+    />
+  </div>
+  <div class="jobs__filters" role="tablist" aria-label="Filter by status">
+    @for (filter of statusFilters; track filter.value) {
+      <button
+        type="button"
+        class="jobs__filter"
+        [class.is-active]="statusFilter() === filter.value"
+        (click)="setStatusFilter(filter.value)"
+      >
+        {{ filter.label }}
+      </button>
+    }
+  </div>
+</section>
+
+<section class="jobs__table-wrap" aria-label="Jobs table">
+  <app-data-table
+    [columns]="columns"
+    [sortState]="sortState()"
+    [layout]="'0.9fr 1.6fr 1.3fr 1fr 1.2fr 1fr 1.2fr'"
+    (sortChange)="setSort($event)"
+  >
+    @if (isLoading()) {
+      @for (row of skeletonRows; track row) {
+        <div class="jobs__row jobs__row--skeleton" role="row">
+          <span class="skeleton-block"></span>
+          <span class="skeleton-block"></span>
+          <span class="skeleton-block"></span>
+          <span class="skeleton-block"></span>
+          <span class="skeleton-block"></span>
+          <span class="skeleton-block"></span>
+        </div>
+      }
+    } @else {
+      @if (pageJobs().length === 0) {
+        <div class="jobs__empty">
+          <h3>No jobs match the current filters.</h3>
+          <p>Adjust your search or status filters to reveal active installations.</p>
+          <button type="button" class="jobs__empty-button" (click)="resetFilters()">
+            Clear filters
+          </button>
+        </div>
+      } @else {
+        @for (job of pageJobs(); track job.id) {
+          <div class="jobs__row" role="row">
+            <span class="jobs__id">{{ formatJobId(job.id) }}</span>
+            <span>{{ job.customer }}</span>
+            <span>{{ job.installationType }}</span>
+            <span class="status-badge"
+              [class.status-badge--scheduled]="job.status === 'Scheduled'"
+              [class.status-badge--active]="job.status === 'In Progress'"
+              [class.status-badge--hold]="job.status === 'On Hold'"
+              [class.status-badge--done]="job.status === 'Completed'"
+            >
+              {{ job.status }}
+            </span>
+            <span>{{ job.assignedEngineer }}</span>
+            <span class="jobs__date">{{ formatDate(job.scheduledDate) }}</span>
+            <span class="jobs__actions">
+              <select
+                class="jobs__status-select"
+                [value]="job.status"
+                (change)="onStatusChange(job, $event)"
+                [disabled]="updatingId() === job.id"
+              >
+                @for (status of statusOptions; track status) {
+                  <option [value]="status">{{ status }}</option>
+                }
+              </select>
+              <button
+                type="button"
+                class="jobs__action-button"
+                (click)="deleteJob(job)"
+                [disabled]="deletingId() === job.id"
+              >
+                @if (deletingId() === job.id) {
+                  <span class="spinner spinner--small" aria-hidden="true"></span>
+                  Removing
+                } @else {
+                  Delete
+                }
+              </button>
+            </span>
+          </div>
+        }
+      }
+    }
+  </app-data-table>
+</section>
+
+<section class="jobs__pagination" aria-label="Pagination">
+  <div class="jobs__summary">
+    Showing {{ range().start }}-{{ range().end }} of {{ range().total }} jobs
+  </div>
+  <div class="jobs__pager">
+    <button type="button" class="jobs__pager-button" [disabled]="currentPage() === 1" (click)="prevPage()">
+      Previous
+    </button>
+    <span class="jobs__pager-info">Page {{ currentPage() }} of {{ pageCount() }}</span>
+    <button
+      type="button"
+      class="jobs__pager-button"
+      [disabled]="currentPage() === pageCount()"
+      (click)="nextPage()"
+    >
+      Next
+    </button>
+  </div>
+</section>

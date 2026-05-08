@@ -1,0 +1,81 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-shell__nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.app-shell__body {
+  display: block;
+  padding: 24px 24px 24px calc(var(--sidebar-width) + 24px);
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
+}
+
+.app-shell__side {
+  position: fixed;
+  top: var(--nav-height);
+  left: 24px;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--nav-height) - 24px);
+  z-index: 15;
+}
+
+.app-shell__main {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  min-height: calc(100vh - var(--nav-height) - 48px);
+}
+
+.app-shell__overlay {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .app-shell__body {
+    padding: 16px;
+  }
+
+  .app-shell__side {
+    left: 16px;
+    transform: translateX(-120%);
+    transition: transform 0.3s ease;
+  }
+
+  .app-shell__side.is-open {
+    transform: translateX(0);
+  }
+
+  .app-shell__main {
+    padding: 20px;
+  }
+
+  .app-shell__overlay {
+    position: fixed;
+    inset: var(--nav-height) 0 0 0;
+    background: rgba(7, 10, 18, 0.6);
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    display: block;
+    z-index: 10;
+  }
+
+  .app-shell__overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+:root {
+	color-scheme: dark;
+	--bg: #0a0f1c;
+	--bg-elevated: #10182a;
+	--bg-panel: #151f35;
+	--ink: #f7f8ff;
+	--muted: #9aa6c5;
+	--accent: #f04444;
+	--accent-strong: #ff6b6b;
+	--accent-soft: rgba(240, 68, 68, 0.18);
+	--success: #39d7a1;
+	--warning: #f6b44f;
+	--border: rgba(255, 255, 255, 0.09);
+	--shadow: 0 20px 60px rgba(4, 8, 14, 0.55);
+	--shadow-soft: 0 10px 26px rgba(4, 8, 14, 0.35);
+	--card-glow: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+	--radius-lg: 20px;
+	--radius-md: 14px;
+	--radius-sm: 10px;
+	--grid-gap: 24px;
+	--nav-height: 76px;
+	--sidebar-width: 280px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+	color: var(--ink);
+	background:
+		radial-gradient(circle at top left, rgba(255, 255, 255, 0.06) 0%, rgba(10, 15, 28, 0.9) 45%),
+		radial-gradient(circle at 20% 20%, rgba(240, 68, 68, 0.14), transparent 55%),
+		#0a0f1c;
+	min-height: 100vh;
+	line-height: 1.6;
+	letter-spacing: 0.2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	letter-spacing: 0.2px;
+}
+
+*::selection {
+	background: rgba(240, 68, 68, 0.35);
+	color: #fff;
+}
+
+:focus-visible {
+	outline: 2px solid rgba(240, 68, 68, 0.5);
+	outline-offset: 2px;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+.skeleton {
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.08);
+	animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+	0% {
+		opacity: 0.35;
+	}
+	50% {
+		opacity: 0.9;
+	}
+	100% {
+		opacity: 0.35;
+	}
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 24px;
+}

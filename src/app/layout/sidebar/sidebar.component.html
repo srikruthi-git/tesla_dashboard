@@ -1,0 +1,59 @@
+<aside class="side-nav" aria-label="Primary">
+  <div class="side-nav__brand">
+    <span class="side-nav__brand-title">Tesla Energy</span>
+    <span class="side-nav__brand-sub">Admin Console</span>
+  </div>
+  <nav class="side-nav__links">
+    <a routerLink="/dashboard" routerLinkActive="is-active" class="side-nav__link">
+      <span class="side-nav__icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 12l8-8 8 8v8H4v-8Z" fill="none" stroke="currentColor" stroke-width="1.8" />
+        </svg>
+      </span>
+      <span>Dashboard</span>
+    </a>
+    <a routerLink="/jobs" routerLinkActive="is-active" class="side-nav__link">
+      <span class="side-nav__icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="6" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span>Jobs</span>
+    </a>
+    <a routerLink="/analytics" routerLinkActive="is-active" class="side-nav__link">
+      <span class="side-nav__icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 16V8m6 8V4m6 12v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span>Analytics</span>
+    </a>
+    <a routerLink="/settings" routerLinkActive="is-active" class="side-nav__link">
+      <span class="side-nav__icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          />
+          <path
+            d="M4 12h2.2m11.6 0H20M12 4v2.2m0 11.6V20"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
+      </span>
+      <span>Settings</span>
+    </a>
+  </nav>
+  <div class="side-nav__footer">
+    <div class="side-nav__meter" aria-label="Storage health">
+      <span class="side-nav__meter-label">Storage Health</span>
+      <span class="side-nav__meter-value">92%</span>
+    </div>
+    <button type="button" class="side-nav__button">Request Maintenance</button>
+  </div>
+</aside>

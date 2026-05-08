@@ -1,0 +1,33 @@
+<header class="nav-bar">
+  <button class="nav-bar__menu" type="button" aria-label="Open navigation" (click)="toggleSidebar.emit()">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </button>
+  <div class="nav-bar__brand">
+    <span class="nav-bar__logo">Tesla Energy Dashboard</span>
+    <span class="nav-bar__sub">Enterprise Operations</span>
+  </div>
+  <div class="nav-bar__actions">
+    <button class="nav-bar__icon" type="button" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 3a6 6 0 0 0-6 6v3.2l-1.4 2.8h14.8l-1.4-2.8V9a6 6 0 0 0-6-6Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+        <path d="M9.5 19a2.5 2.5 0 0 0 5 0" stroke="currentColor" stroke-width="1.8" />
+      </svg>
+      <span class="nav-bar__badge">3</span>
+    </button>
+    <div class="nav-bar__user">
+      <div class="nav-bar__avatar" aria-hidden="true">AE</div>
+      <div class="nav-bar__user-text">
+        <span class="nav-bar__name">Avery Ellis</span>
+        <span class="nav-bar__role">Energy Ops Lead</span>
+      </div>
+    </div>
+  </div>
+</header>

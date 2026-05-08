@@ -1,0 +1,40 @@
+.users__list {
+  display: grid;
+  gap: 16px;
+}
+
+.users__card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+}
+
+.users__card h3 {
+  margin: 0 0 6px;
+}
+
+.users__card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.users__status {
+  font-weight: 600;
+  color: var(--warning);
+}
+
+.users__status--active {
+  color: var(--success);
+}
+
+@media (max-width: 720px) {
+  .users__card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

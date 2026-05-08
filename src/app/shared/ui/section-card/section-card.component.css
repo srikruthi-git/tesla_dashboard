@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+.section-card {
+  background: var(--card-glow);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.section-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-card__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.section-card__tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: rgba(245, 246, 255, 0.6);
+}
+
+.section-card__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.section-card__subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
